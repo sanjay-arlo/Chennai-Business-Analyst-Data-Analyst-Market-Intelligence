@@ -1,102 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chennai Business Analyst & Data Analyst Market Intelligence</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chennai Job Market Insights — Business Analyst / Data Analyst</title>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <style>
-:root{--bg:#0b1020;--panel:#11182b;--text:#eef2ff;--muted:#9aa6c0;--line:#27314a;--accent:#7c9cff;}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0b1020,#0e1425);color:var(--text);font-family:Inter,Arial,sans-serif}
-.wrap{max-width:1450px;margin:auto;padding:30px 22px 50px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:18px}.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}.hero h1{margin:8px 0;font-size:38px;line-height:1.08}.hero p{margin:0;color:var(--muted);max-width:900px;line-height:1.6}.badge{padding:10px 14px;border:1px solid var(--line);background:#0f1728;border-radius:999px;color:#c9d3ec;font-size:13px;white-space:nowrap}
-.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.toolbar label{display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:12px}.toolbar select{background:#0f1728;color:var(--text);border:1px solid var(--line);padding:10px 12px;border-radius:10px;min-width:170px}
-.status{margin:8px 0 18px;color:#aeb9d0;font-size:12px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:14px 0}.card{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:18px}.kpi-label{color:var(--muted);font-size:13px}.kpi{font-size:28px;font-weight:800;margin-top:8px}.kpi-sub{font-size:12px;color:#7f8ba4;margin-top:4px}
-.section{margin-top:20px}.section h2{font-size:18px;margin:0 0 12px}.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px}.chart{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:8px;min-height:410px}.wide{grid-column:1/-1}
-.recs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.rec{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:18px}.rec b{display:block;margin-bottom:8px}.rec p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
-.note{margin-top:16px;padding:14px 16px;border-radius:12px;background:#151d31;border:1px solid var(--line);color:#abb6cf;line-height:1.5}.error{padding:20px;border:1px solid #6d3d45;background:#2a1520;border-radius:12px;color:#ffd9df}.footer{margin-top:22px;color:#78849e;font-size:12px;line-height:1.6}.footer a{color:#a9b8df}
-@media(max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}.charts{grid-template-columns:1fr}.recs{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}.hero h1{font-size:30px}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}.wrap{padding:22px 14px}.toolbar select{min-width:145px;width:100%}}
+:root{--bg:#09111f;--panel:#111b2d;--text:#eef4ff;--muted:#9ba8c0;--line:#2a3650;--accent:#79a6ff;--good:#83dfaa}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#09111f,#0d1728);color:var(--text);font-family:Inter,Arial,sans-serif}.wrap{max-width:1450px;margin:auto;padding:26px 22px 55px}
+.hero,.card,.chart,.decision,.tablebox,.glossary{background:rgba(17,27,45,.97);border:1px solid var(--line);border-radius:16px}.hero{padding:30px;margin-bottom:18px}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:800}.hero h1{font-size:38px;line-height:1.1;margin:8px 0 12px}.hero p{max-width:1120px;color:var(--muted);line-height:1.65;margin:0}.hero .goal{margin-top:15px;color:#dce7fa}.filters{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.filters label{display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:12px}select{min-width:205px;background:#0d1728;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 12px}.status{font-size:12px;color:var(--muted);margin:8px 0 15px}.status.good{color:var(--good)}.status.warn{padding:13px 15px;border-radius:12px;border:1px solid #70404a;background:#2a1720;color:#ffd7df}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.card{padding:18px}.label{font-size:12px;color:var(--muted)}.kpi{font-size:28px;font-weight:850;margin-top:7px}.sub{font-size:12px;color:#78869e;margin-top:4px}.section{margin-top:22px}.section h2{font-size:19px;margin:0 0 6px}.explain{font-size:13px;color:var(--muted);margin:0 0 12px}.charts{display:grid;grid-template-columns:1fr 1fr;gap:15px}.chart{min-height:405px;padding:8px}.wide{grid-column:1/-1}.decision{margin-top:20px;padding:21px}.decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.decision-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#0d1728}.decision-card b{display:block;margin-bottom:7px}.decision-card p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}.tablebox{padding:18px;margin-top:12px;overflow:auto}.tablebox table{width:100%;border-collapse:collapse;font-size:13px}.tablebox th,.tablebox td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left}.tablebox th{color:#c6d2e8}.tablebox td{color:#abb8ce}.glossary{padding:18px;margin-top:20px}.glossary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.term{border:1px solid var(--line);border-radius:12px;padding:14px;background:#0d1728}.term b{display:block;margin-bottom:5px}.term span{font-size:13px;color:var(--muted);line-height:1.5}.note{margin-top:15px;padding:14px 16px;border-radius:12px;background:#151f33;border:1px solid var(--line);color:#adb9ce;line-height:1.6;font-size:13px}.footer{margin-top:20px;color:#78869e;font-size:12px}.footer a{color:#b1c3eb}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.glossary-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.charts{grid-template-columns:1fr}.decision-grid{grid-template-columns:1fr}}@media(max-width:650px){.grid{grid-template-columns:1fr}.glossary-grid{grid-template-columns:1fr}}@media(max-width:520px){.hero h1{font-size:30px}.wrap{padding:20px 14px}select{min-width:0;width:100%}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="hero">
-    <div>
-      <div class="eyebrow">Chennai Labour Market Intelligence</div>
-      <h1>Business Analyst & Data Analyst Market Intelligence</h1>
-      <p>Interactive portfolio dashboard where every KPI and chart is calculated from the repository CSV. Filters update the analysis without changing the underlying data.</p>
-    </div>
-    <div class="badge">GitHub Pages • Portfolio Project</div>
-  </div>
+<section class="hero">
+<div class="eyebrow">Chennai Labour Market • Business Analysis Case Study</div>
+<h1>Chennai Job Market Insights</h1>
+<p>This project answers a simple business question: <strong>what patterns appear in a sample of Chennai Business Analyst and Data Analyst job listings, and how can a candidate use those patterns to focus skills and job-search decisions?</strong></p>
+<p class="goal"><strong>Business flow:</strong> Listings → Market patterns → Skill demand → Role comparison → Job-search recommendations</p>
+</section>
 
-  <div class="toolbar">
-    <label>Role<select id="roleFilter"><option value="All">All roles</option></select></label>
-    <label>Industry<select id="industryFilter"><option value="All">All industries</option></select></label>
-    <label>Work arrangement<select id="workFilter"><option value="All">All arrangements</option></select></label>
-    <label>Location<select id="locationFilter"><option value="All">All locations</option></select></label>
-  </div>
-  <div id="status" class="status">Loading data…</div>
+<div class="filters">
+<label>Role<select id="roleFilter"><option value="All">All roles</option></select></label>
+<label>Industry<select id="industryFilter"><option value="All">All industries</option></select></label>
+<label>Work style<select id="workFilter"><option value="All">All work styles</option></select></label>
+<label>Chennai area<select id="locationFilter"><option value="All">All areas</option></select></label>
+</div>
+<div id="status" class="status">Loading sample data…</div>
 
-  <div class="grid">
-    <div class="card"><div class="kpi-label">Filtered Listings</div><div id="kpiListings" class="kpi">—</div><div class="kpi-sub">Rows in current view</div></div>
-    <div class="card"><div class="kpi-label">Median Salary Midpoint</div><div id="kpiSalary" class="kpi">—</div><div class="kpi-sub">Calculated from min/max midpoint</div></div>
-    <div class="card"><div class="kpi-label">Top Role</div><div id="kpiRole" class="kpi">—</div><div class="kpi-sub">Highest listing count</div></div>
-    <div class="card"><div class="kpi-label">Top Skill</div><div id="kpiSkill" class="kpi">—</div><div class="kpi-sub">Highest listing penetration</div></div>
-  </div>
-
-  <div class="section"><h2>Market Overview</h2>
-    <div class="charts">
-      <div id="salary" class="chart"></div><div id="skills" class="chart"></div>
-      <div id="hubs" class="chart"></div><div id="work" class="chart"></div>
-      <div id="industry" class="chart"></div><div id="roles" class="chart"></div>
-      <div id="profile" class="chart wide"></div>
-    </div>
-  </div>
-
-  <div class="section"><h2>Decision Notes</h2>
-    <div class="recs">
-      <div class="rec"><b>Analyst core</b><p>Use the skill chart to identify the technical baseline most common in the selected sample, then prioritise the strongest recurring skills.</p></div>
-      <div class="rec"><b>BA differentiation</b><p>Compare Business Analyst and Data Analyst demand in the profile chart to spot where stakeholder, requirements and process capabilities complement technical skills.</p></div>
-      <div class="rec"><b>Targeting</b><p>Use industry, location and work-arrangement filters to narrow the sample and translate the analysis into a focused job-search strategy.</p></div>
-    </div>
-  </div>
-
-  <div class="note"><strong>Data transparency:</strong> This repository contains a synthetic/illustrative dataset created for portfolio demonstration. It is not live scraped market data and should not be used to make factual claims about the Chennai labour market.</div>
-  <div class="footer">Built by <b>Sanjay Arlo</b> • <a href="https://github.com/sanjay-arlo/Chennai-Business-Analyst-Data-Analyst-Market-Intelligence">GitHub repository</a></div>
+<div class="grid">
+<div class="card"><div class="label">Listings in view</div><div id="kpiListings" class="kpi">—</div><div class="sub">Sample records after filters</div></div>
+<div class="card"><div class="label">Typical salary midpoint</div><div id="kpiSalary" class="kpi">—</div><div class="sub">Median of min/max midpoint</div></div>
+<div class="card"><div class="label">Most common role</div><div id="kpiRole" class="kpi">—</div><div class="sub">Highest listing count</div></div>
+<div class="card"><div class="label">Most requested skill</div><div id="kpiSkill" class="kpi">—</div><div class="sub">Highest share of listings</div></div>
 </div>
 
+<section class="section"><h2>1. What does the sample market look like?</h2><p class="explain">Start here. These charts show salary, skills, hiring areas, work style and industry mix.</p><div class="charts">
+<div id="salary" class="chart"></div><div id="skills" class="chart"></div><div id="hubs" class="chart"></div><div id="work" class="chart"></div><div id="industry" class="chart"></div><div id="roles" class="chart"></div>
+</div></section>
+
+<section class="section"><h2>2. What is different between Business Analyst and Data Analyst jobs?</h2><p class="explain">This compares the percentage of listings for each role that mention the same skill.</p><div id="profile" class="chart wide"></div></section>
+
+<section class="section"><h2>3. Skills to prioritise</h2><div class="tablebox"><table><thead><tr><th>Skill</th><th>Listings mentioning skill</th><th>Share of sample</th><th>Business meaning</th></tr></thead><tbody id="skillBody"><tr><td colspan="4">Loading…</td></tr></tbody></table></div></section>
+
+<section class="decision"><h2>4. Business Recommendations</h2><div class="decision-grid">
+<div class="decision-card"><b>Build the common baseline</b><p id="rec1">—</p></div>
+<div class="decision-card"><b>Choose a role path</b><p id="rec2">—</p></div>
+<div class="decision-card"><b>Target the right market slice</b><p id="rec3">—</p></div>
+</div>
+<div class="note"><strong>How to interpret this project:</strong> the dataset is synthetic/illustrative. It demonstrates the Business Analyst process—defining questions, validating data, calculating KPIs, segmenting the sample, comparing roles and turning findings into decisions. It is not live Chennai hiring intelligence.</div></section>
+
+<section class="glossary"><h2>5. Plain-English Glossary</h2><div class="glossary-grid">
+<div class="term"><b>Salary midpoint</b><span>The middle value between the listed minimum and maximum salary.</span></div>
+<div class="term"><b>Skill demand</b><span>The percentage of sample listings that mention a skill at least once.</span></div>
+<div class="term"><b>Work style</b><span>Whether a listing is hybrid, on-site or remote in the sample.</span></div>
+<div class="term"><b>Hiring area</b><span>The Chennai location recorded for the sample listing.</span></div>
+<div class="term"><b>BA vs DA profile</b><span>A comparison of which skills appear more often in the two role types.</span></div>
+<div class="term"><b>Illustrative dataset</b><span>Data created to demonstrate analysis. It should not be presented as real market evidence.</span></div>
+</div></section>
+
+<div class="footer">Built by <b>Sanjay Arlo</b> • <a href="https://github.com/sanjay-arlo/Chennai-Business-Analyst-Data-Analyst-Market-Intelligence">View project on GitHub</a></div>
+</div>
 <script>
-let rawData=[];
-const baseLayout={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#eef2ff'},margin:{l:52,r:18,t:58,b:52},legend:{orientation:'h',y:-0.22},xaxis:{gridcolor:'#27314a',zerolinecolor:'#27314a'},yaxis:{gridcolor:'#27314a',zerolinecolor:'#27314a'}};
-const cfg={responsive:true,displaylogo:false};
-function draw(id,data,extra={}){Plotly.newPlot(id,data,{...baseLayout,...extra},cfg)}
-function fillSelect(id,values){const el=document.getElementById(id);values.sort((a,b)=>a.localeCompare(b)).forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o)})}
-function unique(a){return [...new Set(a.filter(Boolean))]}
-function median(a){if(!a.length)return null;const s=[...a].sort((x,y)=>x-y),m=Math.floor(s.length/2);return s.length%2?s[m]:(s[m-1]+s[m])/2}
-function countBy(a,key){const m={};a.forEach(x=>{const k=key(x);m[k]=(m[k]||0)+1});return m}
-function topEntry(obj){return Object.entries(obj).sort((a,b)=>b[1]-a[1])[0]||[null,0]}
+const Q='?v=20260911-business1';let rawData=[];
+const base={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#eef4ff'},margin:{l:58,r:18,t:58,b:72},xaxis:{gridcolor:'#2a3650'},yaxis:{gridcolor:'#2a3650'},legend:{orientation:'h',y:-.22}};const cfg={responsive:true,displaylogo:false};
+const sum=a=>a.reduce((x,y)=>x+y,0);const nums=a=>a.map(Number).filter(Number.isFinite);const med=a=>{const s=nums(a).sort((x,y)=>x-y);if(!s.length)return null;const m=Math.floor(s.length/2);return s.length%2?s[m]:(s[m-1]+s[m])/2};const uniq=a=>[...new Set(a.filter(Boolean))];const esc=v=>String(v??'').replace(/[&<>\'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\'':'&#39;','"':'&quot;'}[m]));
+function draw(id,data,title,extra={}){Plotly.react(document.getElementById(id),data,{...base,...extra,title},cfg)}function empty(id,title){draw(id,[],title,{xaxis:{visible:false},yaxis:{visible:false},annotations:[{text:'No data for this selection',xref:'paper',yref:'paper',x:.5,y:.5,showarrow:false,font:{color:'#9ba8c0',size:14}}]})}
+function fillSelect(id,values){const el=document.getElementById(id);while(el.options.length>1)el.remove(1);values.map(String).sort((a,b)=>a.localeCompare(b)).forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o)})}
+function countBy(a,key){const o={};a.forEach(v=>{const k=key(v);o[k]=(o[k]||0)+1});return o}function top(o){return Object.entries(o).sort((a,b)=>b[1]-a[1])[0]||[null,0]}
 function filtered(){const r=document.getElementById('roleFilter').value,i=document.getElementById('industryFilter').value,w=document.getElementById('workFilter').value,l=document.getElementById('locationFilter').value;return rawData.filter(x=>(r==='All'||x['Job Title']===r)&&(i==='All'||x['Industry']===i)&&(w==='All'||x['Work Arrangement']===w)&&(l==='All'||x['Location']===l))}
-function render(df){
- const n=df.length;document.getElementById('kpiListings').textContent=n;
- const salaryMid=df.map(x=>(x.min+x.max)/2);document.getElementById('kpiSalary').textContent=salaryMid.length?'₹'+median(salaryMid).toFixed(1)+' LPA':'—';
- const roleCounts=countBy(df,x=>x['Job Title']);document.getElementById('kpiRole').textContent=topEntry(roleCounts)[0]||'—';
- const skills=df.flatMap(x=>x['Skills'].split(';').map(s=>s.trim()).filter(Boolean));document.getElementById('kpiSkill').textContent=topEntry(countBy(skills,s=>s))[0]||'—';
- document.getElementById('status').textContent=`Showing ${n} of ${rawData.length} repository records. Salary midpoint = (Min Salary + Max Salary) / 2. Skill % = listings mentioning the skill ÷ filtered listings.`;
- const roleSalary={};df.forEach(x=>(roleSalary[x['Job Title']]??=[]).push((x.min+x.max)/2));const rs=Object.entries(roleSalary).map(([k,v])=>[k,median(v)]).sort((a,b)=>b[1]-a[1]);
- draw('salary',[{x:rs.map(x=>x[0]),y:rs.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>₹%{y:.1f} LPA<extra></extra>'}],{title:'Median Salary Midpoint by Role',yaxis:{title:'LPA'}});
- const skillCounts=countBy(skills,s=>s);const ss=Object.entries(skillCounts).map(([k,v])=>[k,+(v/n*100).toFixed(1)]).sort((a,b)=>b[1]-a[1]).slice(0,12);
- draw('skills',[{x:ss.map(x=>x[0]),y:ss.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>%{y:.1f}% of listings<extra></extra>'}],{title:'Skill Demand (calculated)',xaxis:{tickangle:-35},yaxis:{title:'% of listings'}});
- const hub=countBy(df,x=>x['Location']);const hs=Object.entries(hub).sort((a,b)=>b[1]-a[1]);draw('hubs',[{labels:hs.map(x=>x[0]),values:hs.map(x=>x[1]),type:'pie',hole:.46,textinfo:'label+percent',hovertemplate:'%{label}<br>%{value} listings<extra></extra>'}],{title:'Chennai Hiring Hubs'});
- const work=countBy(df,x=>x['Work Arrangement']);draw('work',[{labels:Object.keys(work),values:Object.values(work),type:'pie',hole:.45,textinfo:'label+percent'}],{title:'Work Arrangement Mix'});
- const ind=countBy(df,x=>x['Industry']);const ins=Object.entries(ind).sort((a,b)=>b[1]-a[1]);draw('industry',[{x:ins.map(x=>x[0]),y:ins.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>%{y} listings<extra></extra>'}],{title:'Industry Mix (calculated)',xaxis:{tickangle:-35},yaxis:{title:'Listings'}});
- const rls=Object.entries(roleCounts).sort((a,b)=>b[1]-a[1]);draw('roles',[{x:rls.map(x=>x[0]),y:rls.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>%{y} listings<extra></extra>'}],{title:'Role Mix'});
- const baDa=df.filter(x=>['Business Analyst','Data Analyst'].includes(x['Job Title']));const profileSkills=unique(baDa.flatMap(x=>x['Skills'].split(';').map(s=>s.trim())));
- const traces=['Business Analyst','Data Analyst'].map(role=>{const sub=baDa.filter(x=>x['Job Title']===role),denom=sub.length||1;return{x:profileSkills,y:profileSkills.map(skill=>+(sub.filter(x=>x['Skills'].split(';').map(s=>s.trim()).includes(skill)).length/denom*100).toFixed(1)),name:role,type:'scatter',mode:'lines+markers'}});
- draw('profile',traces,{title:'BA vs DA Skill Profile (calculated)',yaxis:{title:'% of role listings'},xaxis:{tickangle:-30}});
-}
-function init(){Papa.parse('sample_listings_chennai.csv',{download:true,header:true,skipEmptyLines:true,complete:results=>{rawData=results.data.map(x=>({...x,min:Number(x['Min Salary LPA']),max:Number(x['Max Salary LPA'])})).filter(x=>x['Job Title']&&Number.isFinite(x.min)&&Number.isFinite(x.max));fillSelect('roleFilter',unique(rawData.map(x=>x['Job Title'])));fillSelect('industryFilter',unique(rawData.map(x=>x['Industry'])));fillSelect('workFilter',unique(rawData.map(x=>x['Work Arrangement'])));fillSelect('locationFilter',unique(rawData.map(x=>x['Location'])));['roleFilter','industryFilter','workFilter','locationFilter'].forEach(id=>document.getElementById(id).addEventListener('change',()=>render(filtered())));render(rawData)},error:()=>document.getElementById('status').innerHTML='<div class="error">Could not load sample_listings_chennai.csv. Open the dashboard through GitHub Pages or a local HTTP server rather than file://.</div>'});}
-init();
+function render(df){const n=df.length;document.getElementById('kpiListings').textContent=n;const salary=df.map(x=>(x.min+x.max)/2);document.getElementById('kpiSalary').textContent=salary.length?'₹'+med(salary).toFixed(1)+' LPA':'—';const roles=countBy(df,x=>x['Job Title']);document.getElementById('kpiRole').textContent=top(roles)[0]||'—';const skillCounts={};df.forEach(x=>uniq(x.Skills.split(';').map(s=>s.trim())).forEach(s=>skillCounts[s]=(skillCounts[s]||0)+1));document.getElementById('kpiSkill').textContent=top(skillCounts)[0]||'—';document.getElementById('status').textContent=`Showing ${n} of ${rawData.length} repository records. All headline metrics are calculated from the CSV.`;
+if(!n){['salary','skills','hubs','work','industry','roles','profile'].forEach(id=>empty(id,id==='profile'?'Business Analyst vs Data Analyst Skills':id));document.getElementById('skillBody').innerHTML='<tr><td colspan="4">No records match these filters.</td></tr>';return}
+const roleSalary={};df.forEach(x=>(roleSalary[x['Job Title']]??[]).push((x.min+x.max)/2));const rs=Object.entries(roleSalary).map(([k,v])=>[k,med(v)]).sort((a,b)=>b[1]-a[1]);draw('salary',[{x:rs.map(x=>x[0]),y:rs.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>₹%{y:.1f} LPA<extra></extra>'}],'Typical Salary Midpoint by Role',{xaxis:{type:'category'},yaxis:{title:'LPA'}});
+const ss=Object.entries(skillCounts).map(([k,v])=>[k,+(v/n*100).toFixed(1)]).sort((a,b)=>b[1]-a[1]).slice(0,12);draw('skills',[{x:ss.map(x=>x[0]),y:ss.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>%{y:.1f}% of listings<extra></extra>'}],'Skills Mentioned Most Often',{xaxis:{type:'category',tickangle:-35},yaxis:{title:'% of listings'}});
+const hubs=countBy(df,x=>x.Location),hs=Object.entries(hubs).sort((a,b)=>b[1]-a[1]);draw('hubs',[{labels:hs.map(x=>x[0]),values:hs.map(x=>x[1]),type:'pie',hole:.45,textinfo:'label+percent'}],'Where the Sampled Jobs Are Located');const works=countBy(df,x=>x['Work Arrangement']);draw('work',[{labels:Object.keys(works),values:Object.values(works),type:'pie',hole:.45,textinfo:'label+percent'}],'Work Style Mix');const inds=countBy(df,x=>x.Industry),is=Object.entries(inds).sort((a,b)=>b[1]-a[1]);draw('industry',[{x:is.map(x=>x[0]),y:is.map(x=>x[1]),type:'bar'}],'Industry Mix',{xaxis:{type:'category',tickangle:-35},yaxis:{title:'Listings'}});const rls=Object.entries(roles).sort((a,b)=>b[1]-a[1]);draw('roles',[{x:rls.map(x=>x[0]),y:rls.map(x=>x[1]),type:'bar'}],'Role Mix',{xaxis:{type:'category'},yaxis:{title:'Listings'}});
+const baDa=rawData.filter(x=>['Business Analyst','Data Analyst'].includes(x['Job Title']));const profSkills=uniq(baDa.flatMap(x=>x.Skills.split(';').map(s=>s.trim())));const traces=['Business Analyst','Data Analyst'].map(role=>{const sub=baDa.filter(x=>x['Job Title']===role),d=sub.length||1;return{x:profSkills,y:profSkills.map(s=>+(sub.filter(x=>uniq(x.Skills.split(';').map(a=>a.trim())).includes(s)).length/d*100).toFixed(1)),name:role,type:'scatter',mode:'lines+markers'}});traces.some(t=>t.y.some(v=>v>0))?draw('profile',traces,'Business Analyst vs Data Analyst Skills',{xaxis:{type:'category',tickangle:-28},yaxis:{title:'% of role listings'}}):empty('profile','Business Analyst vs Data Analyst Skills');
+const rows=ss.slice(0,10);document.getElementById('skillBody').innerHTML=rows.map(([skill,pct])=>`<tr><td>${esc(skill)}</td><td>${skillCounts[skill]}</td><td>${pct.toFixed(1)}%</td><td>${['SQL','Python','Power BI','Excel','Communication'].includes(skill)?'Useful for analysis, reporting or stakeholder decisions.':'Relevant skill signal in the sample.'}</td></tr>`).join('');
+const topSkill=top(skillCounts)[0],topRole=top(roles)[0];document.getElementById('rec1').textContent=topSkill?`Prioritise ${topSkill} first because it appears in the largest share of the selected sample.`:'Use the skill table to set the common baseline.';document.getElementById('rec2').textContent=topRole?`${topRole} has the largest representation in the selected view. Compare the role profile before choosing your focus.`:'Compare both role profiles before deciding.';document.getElementById('rec3').textContent=`Use the industry, work-style and Chennai-area filters to turn the broad sample into a more focused job-search strategy.`}
+Papa.parse('sample_listings_chennai.csv'+Q,{download:true,header:true,skipEmptyLines:true,complete:r=>{rawData=r.data.map(x=>({...x,min:Number(x['Min Salary LPA']),max:Number(x['Max Salary LPA'])})).filter(x=>x['Job Title']&&Number.isFinite(x.min)&&Number.isFinite(x.max)&&x.Skills);fillSelect('roleFilter',uniq(rawData.map(x=>x['Job Title'])));fillSelect('industryFilter',uniq(rawData.map(x=>x.Industry)));fillSelect('workFilter',uniq(rawData.map(x=>x['Work Arrangement'])));fillSelect('locationFilter',uniq(rawData.map(x=>x.Location)));['roleFilter','industryFilter','workFilter','locationFilter'].forEach(id=>document.getElementById(id).addEventListener('change',()=>render(filtered())));render(rawData)},error:()=>{document.getElementById('status').className='status warn';document.getElementById('status').textContent='Could not load the sample CSV. Use GitHub Pages or a local HTTP server.'}});
 </script>
-</body>
-</html>
+</body></html>
