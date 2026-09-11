@@ -1,5 +1,2 @@
-pandas
-numpy
-plotly
-matplotlib
-jupyter
+pandas>=2.0,<3.0
+jupyter>=1.0
