@@ -1,2 +1,78 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Chennai Business Analyst & Data Analyst Market Intelligence</title><script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script></head><body style="font-family:Arial,sans-serif;margin:0;padding:24px"><h1>Chennai Business Analyst & Data Analyst Market Intelligence</h1><p>Interactive portfolio dashboard. Synthetic/illustrative dataset for demonstration.</p><div id="dashboard"></div><script>const d=document.getElementById('dashboard'); d.innerHTML='<p>Dashboard deployed via GitHub Pages. See the project repository for the notebook and dataset.</p><div id="chart" style="height:420px"></div>'; Plotly.newPlot('chart',[{x:['Business Analyst','Data Analyst','BI Analyst','Product Analyst','Senior Business Analyst'],y:[7.2,6.8,8.1,8.7,12.4],type:'bar'}],{title:'Illustrative Chennai Median Salary (LPA)',yaxis:{title:'LPA'}});</script></body></html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chennai BA/DA Market Intelligence Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+:root{--bg:#0b1020;--panel:#11182b;--text:#eef2ff;--muted:#9aa6c0;--line:#27314a;--accent:#7c9cff;}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0b1020,#0e1425);color:var(--text);font-family:Inter,Arial,sans-serif}
+.wrap{max-width:1400px;margin:auto;padding:32px 22px 50px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:24px}.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}.hero h1{margin:8px 0 8px;font-size:38px;line-height:1.08}.hero p{margin:0;color:var(--muted);max-width:900px;line-height:1.6}.badge{padding:10px 14px;border:1px solid var(--line);background:#0f1728;border-radius:999px;color:#c9d3ec;font-size:13px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0}.card{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:20px}.kpi-label{color:var(--muted);font-size:13px}.kpi{font-size:30px;font-weight:800;margin-top:8px}.kpi-sub{font-size:12px;color:#7f8ba4;margin-top:4px}
+.section{margin-top:20px}.section h2{font-size:18px;margin:0 0 12px}.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px}.chart{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:8px;min-height:410px}.wide{grid-column:1/-1}
+.recs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.rec{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:18px}.rec b{display:block;margin-bottom:8px}.rec p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+.footer{margin-top:24px;color:#78849e;font-size:12px;line-height:1.6}.footer a{color:#a9b8df}.note{margin-top:12px;padding:12px 14px;border-radius:12px;background:#151d31;border:1px solid var(--line);color:#abb6cf}
+@media(max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}.charts{grid-template-columns:1fr}.recs{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}.hero h1{font-size:30px}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.wrap{padding:22px 14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Chennai Labour Market Intelligence</div>
+      <h1>Business Analyst & Data Analyst Market Dashboard</h1>
+      <p>Interactive portfolio dashboard covering illustrative role mix, salary patterns, skill demand, Chennai hiring hubs, industries and work arrangements.</p>
+    </div>
+    <div class="badge">GitHub Pages • Portfolio Project</div>
+  </div>
+
+  <div class="grid">
+    <div class="card"><div class="kpi-label">Sampled Listings</div><div class="kpi">120</div><div class="kpi-sub">Synthetic / illustrative records</div></div>
+    <div class="card"><div class="kpi-label">Median Salary</div><div class="kpi">₹7.5 LPA</div><div class="kpi-sub">Illustrative sample median</div></div>
+    <div class="card"><div class="kpi-label">Top Role</div><div class="kpi">Data Analyst</div><div class="kpi-sub">Highest sampled volume</div></div>
+    <div class="card"><div class="kpi-label">Top Skill</div><div class="kpi">SQL</div><div class="kpi-sub">Most frequent skill signal</div></div>
+  </div>
+
+  <div class="section"><h2>Market Overview</h2>
+    <div class="charts">
+      <div id="salary" class="chart"></div>
+      <div id="skills" class="chart"></div>
+      <div id="hubs" class="chart"></div>
+      <div id="work" class="chart"></div>
+      <div id="industry" class="chart"></div>
+      <div id="roles" class="chart"></div>
+      <div id="profile" class="chart wide"></div>
+    </div>
+  </div>
+
+  <div class="section"><h2>Business Recommendations</h2>
+    <div class="recs">
+      <div class="rec"><b>1. Build the analyst core</b><p>Prioritise SQL, advanced Excel and Power BI as the foundation for Chennai BA/DA roles.</p></div>
+      <div class="rec"><b>2. Add BA-specific capability</b><p>Strengthen requirements gathering, stakeholder management, Agile/Jira and process mapping to differentiate from purely technical analysts.</p></div>
+      <div class="rec"><b>3. Target hiring hubs strategically</b><p>Use Chennai locality and industry signals to focus applications where analytics and business roles are concentrated in the sample.</p></div>
+    </div>
+  </div>
+
+  <div class="note">Data transparency: this dashboard uses a synthetic/illustrative 120-row dataset for portfolio demonstration. It is not a live scraped market dataset.</div>
+  <div class="footer">Built by <b>Sanjay Arlo</b> • <a href="https://github.com/sanjay-arlo/chennai-ba-da-market-intelligence">GitHub repository</a></div>
+</div>
+<script>
+const layoutBase={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#eef2ff'},margin:{l:48,r:18,t:58,b:44},legend:{orientation:'h',y:-.18},xaxis:{gridcolor:'#27314a',zerolinecolor:'#27314a'},yaxis:{gridcolor:'#27314a',zerolinecolor:'#27314a'}};
+const cfg={responsive:true,displaylogo:false};
+function draw(id,data,extra={}){Plotly.newPlot(id,data,{...layoutBase,...extra},cfg)}
+
+draw('salary',[{x:['Business Analyst','Data Analyst','BI Analyst','Product Analyst','Senior Business Analyst'],y:[7.2,6.8,8.1,8.7,12.4],type:'bar',hovertemplate:'%{x}<br>₹%{y:.1f} LPA<extra></extra>'}],{title:'Illustrative Median Salary by Role',yaxis:{title:'LPA'}});
+draw('skills',[{x:['SQL','Excel','Power BI','Python','Stakeholder Mgmt','Requirements','Agile/Jira','Process Mapping'],y:[82,76,69,61,57,54,49,41],type:'bar',hovertemplate:'%{x}<br>%{y}% of sampled listings<extra></extra>'}],{title:'Skill Demand (Illustrative)',xaxis:{tickangle:-35},yaxis:{title:'% of listings'}});
+draw('hubs',[{labels:['OMR','Guindy','Taramani','Perungudi','Sholinganallur','Siruseri','Nungambakkam','Ambattur','Porur','Mount Road'],values:[18,15,14,13,12,11,10,8,5,4],type:'pie',hole:.46,textinfo:'label+percent',hovertemplate:'%{label}<br>%{value} listings<extra></extra>'}],{title:'Chennai Hiring Hubs'});
+draw('work',[{labels:['Hybrid','On-site','Remote'],values:[55,31,14],type:'pie',hole:.45,textinfo:'label+percent'}],{title:'Work Arrangement Mix'});
+draw('industry',[{x:['IT Services','BFSI','SaaS','FinTech','Retail','Automotive','Consulting','Healthcare','E-commerce'],y:[29,18,16,13,10,9,8,5,4],type:'bar',hovertemplate:'%{x}<br>%{y} listings<extra></extra>'}],{title:'Illustrative Industry Mix',xaxis:{tickangle:-35}});
+draw('roles',[{x:['Data Analyst','Business Analyst','BI Analyst','Product Analyst','Senior Business Analyst'],y:[32,28,25,19,16],type:'bar',hovertemplate:'%{x}<br>%{y} listings<extra></extra>'}],{title:'Role Mix'});
+draw('profile',[
+ {x:['SQL','Excel','Power BI','Requirements','Stakeholder Mgmt','Agile/Jira','Process Mapping','Python'],y:[82,76,69,54,57,49,41,61],name:'Business Analyst',type:'scatter',mode:'lines+markers'},
+ {x:['SQL','Excel','Power BI','Requirements','Stakeholder Mgmt','Agile/Jira','Process Mapping','Python'],y:[88,72,78,34,29,26,21,84],name:'Data Analyst',type:'scatter',mode:'lines+markers'}
+],{title:'Illustrative BA vs DA Skill Profile',yaxis:{title:'Demand index'}});
+</script>
+</body>
+</html>
