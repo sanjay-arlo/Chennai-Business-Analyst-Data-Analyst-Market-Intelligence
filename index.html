@@ -5,16 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chennai BA/DA Market Intelligence Dashboard</title>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 <style>
 :root{--bg:#0b1020;--panel:#11182b;--text:#eef2ff;--muted:#9aa6c0;--line:#27314a;--accent:#7c9cff;}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0b1020,#0e1425);color:var(--text);font-family:Inter,Arial,sans-serif}
-.wrap{max-width:1400px;margin:auto;padding:32px 22px 50px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:24px}.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}.hero h1{margin:8px 0 8px;font-size:38px;line-height:1.08}.hero p{margin:0;color:var(--muted);max-width:900px;line-height:1.6}.badge{padding:10px 14px;border:1px solid var(--line);background:#0f1728;border-radius:999px;color:#c9d3ec;font-size:13px;white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0}.card{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:20px}.kpi-label{color:var(--muted);font-size:13px}.kpi{font-size:30px;font-weight:800;margin-top:8px}.kpi-sub{font-size:12px;color:#7f8ba4;margin-top:4px}
+.wrap{max-width:1450px;margin:auto;padding:30px 22px 50px}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:18px}.eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}.hero h1{margin:8px 0;font-size:38px;line-height:1.08}.hero p{margin:0;color:var(--muted);max-width:900px;line-height:1.6}.badge{padding:10px 14px;border:1px solid var(--line);background:#0f1728;border-radius:999px;color:#c9d3ec;font-size:13px;white-space:nowrap}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}.toolbar label{display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:12px}.toolbar select{background:#0f1728;color:var(--text);border:1px solid var(--line);padding:10px 12px;border-radius:10px;min-width:170px}
+.status{margin:8px 0 18px;color:#aeb9d0;font-size:12px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:14px 0}.card{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:18px}.kpi-label{color:var(--muted);font-size:13px}.kpi{font-size:28px;font-weight:800;margin-top:8px}.kpi-sub{font-size:12px;color:#7f8ba4;margin-top:4px}
 .section{margin-top:20px}.section h2{font-size:18px;margin:0 0 12px}.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px}.chart{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:8px;min-height:410px}.wide{grid-column:1/-1}
 .recs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.rec{background:rgba(17,24,43,.92);border:1px solid var(--line);border-radius:16px;padding:18px}.rec b{display:block;margin-bottom:8px}.rec p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
-.footer{margin-top:24px;color:#78849e;font-size:12px;line-height:1.6}.footer a{color:#a9b8df}.note{margin-top:12px;padding:12px 14px;border-radius:12px;background:#151d31;border:1px solid var(--line);color:#abb6cf}
+.note{margin-top:16px;padding:14px 16px;border-radius:12px;background:#151d31;border:1px solid var(--line);color:#abb6cf;line-height:1.5}.error{padding:20px;border:1px solid #6d3d45;background:#2a1520;border-radius:12px;color:#ffd9df}.footer{margin-top:22px;color:#78849e;font-size:12px;line-height:1.6}.footer a{color:#a9b8df}
 @media(max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}.charts{grid-template-columns:1fr}.recs{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}.hero h1{font-size:30px}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}.wrap{padding:22px 14px}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.wrap{padding:22px 14px}.toolbar select{min-width:145px;width:100%}}
 </style>
 </head>
 <body>
@@ -23,16 +25,32 @@
     <div>
       <div class="eyebrow">Chennai Labour Market Intelligence</div>
       <h1>Business Analyst & Data Analyst Market Dashboard</h1>
-      <p>Interactive portfolio dashboard covering illustrative role mix, salary patterns, skill demand, Chennai hiring hubs, industries and work arrangements.</p>
+      <p>Interactive portfolio dashboard where every KPI and chart is calculated from the repository CSV. Filters update the analysis without changing the underlying data.</p>
     </div>
     <div class="badge">GitHub Pages • Portfolio Project</div>
   </div>
 
+  <div class="toolbar">
+    <label>Role
+      <select id="roleFilter"><option value="All">All roles</option></select>
+    </label>
+    <label>Industry
+      <select id="industryFilter"><option value="All">All industries</option></select>
+    </label>
+    <label>Work arrangement
+      <select id="workFilter"><option value="All">All arrangements</option></select>
+    </label>
+    <label>Location
+      <select id="locationFilter"><option value="All">All locations</option></select>
+    </label>
+  </div>
+  <div id="status" class="status">Loading data…</div>
+
   <div class="grid">
-    <div class="card"><div class="kpi-label">Sampled Listings</div><div class="kpi">120</div><div class="kpi-sub">Synthetic / illustrative records</div></div>
-    <div class="card"><div class="kpi-label">Median Salary</div><div class="kpi">₹7.5 LPA</div><div class="kpi-sub">Illustrative sample median</div></div>
-    <div class="card"><div class="kpi-label">Top Role</div><div class="kpi">Data Analyst</div><div class="kpi-sub">Highest sampled volume</div></div>
-    <div class="card"><div class="kpi-label">Top Skill</div><div class="kpi">SQL</div><div class="kpi-sub">Most frequent skill signal</div></div>
+    <div class="card"><div class="kpi-label">Filtered Listings</div><div id="kpiListings" class="kpi">—</div><div class="kpi-sub">Rows in current view</div></div>
+    <div class="card"><div class="kpi-label">Median Salary Midpoint</div><div id="kpiSalary" class="kpi">—</div><div class="kpi-sub">Calculated from min/max midpoint</div></div>
+    <div class="card"><div class="kpi-label">Top Role</div><div id="kpiRole" class="kpi">—</div><div class="kpi-sub">Highest listing count</div></div>
+    <div class="card"><div class="kpi-label">Top Skill</div><div id="kpiSkill" class="kpi">—</div><div class="kpi-sub">Highest listing penetration</div></div>
   </div>
 
   <div class="section"><h2>Market Overview</h2>
@@ -47,32 +65,55 @@
     </div>
   </div>
 
-  <div class="section"><h2>Business Recommendations</h2>
+  <div class="section"><h2>Decision Notes</h2>
     <div class="recs">
-      <div class="rec"><b>1. Build the analyst core</b><p>Prioritise SQL, advanced Excel and Power BI as the foundation for Chennai BA/DA roles.</p></div>
-      <div class="rec"><b>2. Add BA-specific capability</b><p>Strengthen requirements gathering, stakeholder management, Agile/Jira and process mapping to differentiate from purely technical analysts.</p></div>
-      <div class="rec"><b>3. Target hiring hubs strategically</b><p>Use Chennai locality and industry signals to focus applications where analytics and business roles are concentrated in the sample.</p></div>
+      <div class="rec"><b>Analyst core</b><p>Use the skill chart to identify the technical baseline most common in the selected sample, then prioritise the strongest recurring skills.</p></div>
+      <div class="rec"><b>BA differentiation</b><p>Compare Business Analyst and Data Analyst demand in the profile chart to spot where stakeholder, requirements and process capabilities complement technical skills.</p></div>
+      <div class="rec"><b>Targeting</b><p>Use industry, location and work-arrangement filters to narrow the sample and translate the analysis into a more focused job-search strategy.</p></div>
     </div>
   </div>
 
-  <div class="note">Data transparency: this dashboard uses a synthetic/illustrative 120-row dataset for portfolio demonstration. It is not a live scraped market dataset.</div>
+  <div class="note"><strong>Data transparency:</strong> This repository contains a synthetic/illustrative dataset created for portfolio demonstration. It is not live scraped market data and should not be used to make factual claims about the Chennai labour market.</div>
   <div class="footer">Built by <b>Sanjay Arlo</b> • <a href="https://github.com/sanjay-arlo/chennai-ba-da-market-intelligence">GitHub repository</a></div>
 </div>
-<script>
-const layoutBase={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:'#eef2ff'},margin:{l:48,r:18,t:58,b:44},legend:{orientation:'h',y:-.18},xaxis:{gridcolor:'#27314a',zerolinecolor:'#27314a'},yaxis:{gridcolor:'#27314a',zerolinecolor:'#27314a'}};
-const cfg={responsive:true,displaylogo:false};
-function draw(id,data,extra={}){Plotly.newPlot(id,data,{...layoutBase,...extra},cfg)}
 
-draw('salary',[{x:['Business Analyst','Data Analyst','BI Analyst','Product Analyst','Senior Business Analyst'],y:[7.2,6.8,8.1,8.7,12.4],type:'bar',hovertemplate:'%{x}<br>₹%{y:.1f} LPA<extra></extra>'}],{title:'Illustrative Median Salary by Role',yaxis:{title:'LPA'}});
-draw('skills',[{x:['SQL','Excel','Power BI','Python','Stakeholder Mgmt','Requirements','Agile/Jira','Process Mapping'],y:[82,76,69,61,57,54,49,41],type:'bar',hovertemplate:'%{x}<br>%{y}% of sampled listings<extra></extra>'}],{title:'Skill Demand (Illustrative)',xaxis:{tickangle:-35},yaxis:{title:'% of listings'}});
-draw('hubs',[{labels:['OMR','Guindy','Taramani','Perungudi','Sholinganallur','Siruseri','Nungambakkam','Ambattur','Porur','Mount Road'],values:[18,15,14,13,12,11,10,8,5,4],type:'pie',hole:.46,textinfo:'label+percent',hovertemplate:'%{label}<br>%{value} listings<extra></extra>'}],{title:'Chennai Hiring Hubs'});
-draw('work',[{labels:['Hybrid','On-site','Remote'],values:[55,31,14],type:'pie',hole:.45,textinfo:'label+percent'}],{title:'Work Arrangement Mix'});
-draw('industry',[{x:['IT Services','BFSI','SaaS','FinTech','Retail','Automotive','Consulting','Healthcare','E-commerce'],y:[29,18,16,13,10,9,8,5,4],type:'bar',hovertemplate:'%{x}<br>%{y} listings<extra></extra>'}],{title:'Illustrative Industry Mix',xaxis:{tickangle:-35}});
-draw('roles',[{x:['Data Analyst','Business Analyst','BI Analyst','Product Analyst','Senior Business Analyst'],y:[32,28,25,19,16],type:'bar',hovertemplate:'%{x}<br>%{y} listings<extra></extra>'}],{title:'Role Mix'});
-draw('profile',[
- {x:['SQL','Excel','Power BI','Requirements','Stakeholder Mgmt','Agile/Jira','Process Mapping','Python'],y:[82,76,69,54,57,49,41,61],name:'Business Analyst',type:'scatter',mode:'lines+markers'},
- {x:['SQL','Excel','Power BI','Requirements','Stakeholder Mgmt','Agile/Jira','Process Mapping','Python'],y:[88,72,78,34,29,26,21,84],name:'Data Analyst',type:'scatter',mode:'lines+markers'}
-],{title:'Illustrative BA vs DA Skill Profile',yaxis:{title:'Demand index'}});
+<script>
+let rawData = [];
+const baseLayout = {
+  paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)',
+  font:{color:'#eef2ff'}, margin:{l:52,r:18,t:58,b:52},
+  legend:{orientation:'h',y:-0.22},
+  xaxis:{gridcolor:'#27314a',zerolinecolor:'#27314a'},
+  yaxis:{gridcolor:'#27314a',zerolinecolor:'#27314a'}
+};
+const cfg = {responsive:true, displaylogo:false};
+function draw(id,data,extra={}){Plotly.newPlot(id,data,{...baseLayout,...extra},cfg)}
+function fillSelect(id,values){const el=document.getElementById(id);values.sort((a,b)=>a.localeCompare(b)).forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o)})}
+function unique(a){return [...new Set(a.filter(Boolean))]}
+function median(a){if(!a.length)return null;const s=[...a].sort((x,y)=>x-y),m=Math.floor(s.length/2);return s.length%2?s[m]:(s[m-1]+s[m])/2}
+function countBy(a,key){const m={};a.forEach(x=>{const k=key(x);m[k]=(m[k]||0)+1});return m}
+function topEntry(obj){return Object.entries(obj).sort((a,b)=>b[1]-a[1])[0]||[null,0]}
+function filtered(){const r=document.getElementById('roleFilter').value,i=document.getElementById('industryFilter').value,w=document.getElementById('workFilter').value,l=document.getElementById('locationFilter').value;return rawData.filter(x=>(r==='All'||x['Job Title']===r)&&(i==='All'||x['Industry']===i)&&(w==='All'||x['Work Arrangement']===w)&&(l==='All'||x['Location']===l))}
+function render(df){
+  const n=df.length;document.getElementById('kpiListings').textContent=n;
+  const salaryMid=df.map(x=>(x.min+x.max)/2);document.getElementById('kpiSalary').textContent=salaryMid.length?'₹'+median(salaryMid).toFixed(1)+' LPA':'—';
+  const roleCounts=countBy(df,x=>x['Job Title']);document.getElementById('kpiRole').textContent=topEntry(roleCounts)[0]||'—';
+  const skills=df.flatMap(x=>x['Skills'].split(';').map(s=>s.trim()).filter(Boolean));document.getElementById('kpiSkill').textContent=topEntry(countBy(skills,s=>s))[0]||'—';
+  document.getElementById('status').textContent=`Showing ${n} of ${rawData.length} repository records. Salary midpoint = (Min Salary + Max Salary) / 2. Skill % = listings mentioning the skill ÷ filtered listings.`;
+  const roleSalary={};df.forEach(x=>(roleSalary[x['Job Title']]??=[]).push((x.min+x.max)/2));const rs=Object.entries(roleSalary).map(([k,v])=>[k,median(v)]).sort((a,b)=>b[1]-a[1]);
+  draw('salary',[{x:rs.map(x=>x[0]),y:rs.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>₹%{y:.1f} LPA<extra></extra>'}],{title:'Median Salary Midpoint by Role',yaxis:{title:'LPA'}});
+  const skillCounts=countBy(skills,s=>s);const ss=Object.entries(skillCounts).map(([k,v])=>[k,+(v/n*100).toFixed(1)]).sort((a,b)=>b[1]-a[1]).slice(0,12);
+  draw('skills',[{x:ss.map(x=>x[0]),y:ss.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>%{y:.1f}% of listings<extra></extra>'}],{title:'Skill Demand (calculated)',xaxis:{tickangle:-35},yaxis:{title:'% of listings'}});
+  const hub=countBy(df,x=>x['Location']);const hs=Object.entries(hub).sort((a,b)=>b[1]-a[1]);draw('hubs',[{labels:hs.map(x=>x[0]),values:hs.map(x=>x[1]),type:'pie',hole:.46,textinfo:'label+percent',hovertemplate:'%{label}<br>%{value} listings<extra></extra>'}],{title:'Chennai Hiring Hubs'});
+  const work=countBy(df,x=>x['Work Arrangement']);draw('work',[{labels:Object.keys(work),values:Object.values(work),type:'pie',hole:.45,textinfo:'label+percent'}],{title:'Work Arrangement Mix'});
+  const ind=countBy(df,x=>x['Industry']);const ins=Object.entries(ind).sort((a,b)=>b[1]-a[1]);draw('industry',[{x:ins.map(x=>x[0]),y:ins.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>%{y} listings<extra></extra>'}],{title:'Industry Mix (calculated)',xaxis:{tickangle:-35},yaxis:{title:'Listings'}});
+  const rls=Object.entries(roleCounts).sort((a,b)=>b[1]-a[1]);draw('roles',[{x:rls.map(x=>x[0]),y:rls.map(x=>x[1]),type:'bar',hovertemplate:'%{x}<br>%{y} listings<extra></extra>'}],{title:'Role Mix'});
+  const baDa=df.filter(x=>['Business Analyst','Data Analyst'].includes(x['Job Title']));const profileSkills=unique(baDa.flatMap(x=>x['Skills'].split(';').map(s=>s.trim())));
+  const traces=['Business Analyst','Data Analyst'].map(role=>{const sub=baDa.filter(x=>x['Job Title']===role),denom=sub.length||1;return{x:profileSkills,y:profileSkills.map(skill=>+(sub.filter(x=>x['Skills'].split(';').map(s=>s.trim()).includes(skill)).length/denom*100).toFixed(1)),name:role,type:'scatter',mode:'lines+markers'}});
+  draw('profile',traces,{title:'BA vs DA Skill Profile (calculated)',yaxis:{title:'% of role listings'},xaxis:{tickangle:-30}});
+}
+function init(){Papa.parse('sample_listings_chennai.csv',{download:true,header:true,skipEmptyLines:true,complete:results=>{rawData=results.data.map(x=>({...x,min:Number(x['Min Salary LPA']),max:Number(x['Max Salary LPA'])}));fillSelect('roleFilter',unique(rawData.map(x=>x['Job Title'])));fillSelect('industryFilter',unique(rawData.map(x=>x['Industry'])));fillSelect('workFilter',unique(rawData.map(x=>x['Work Arrangement'])));fillSelect('locationFilter',unique(rawData.map(x=>x['Location'])));['roleFilter','industryFilter','workFilter','locationFilter'].forEach(id=>document.getElementById(id).addEventListener('change',()=>render(filtered())));render(rawData)},error:()=>document.getElementById('status').innerHTML='<div class="error">Could not load sample_listings_chennai.csv. Open the dashboard through GitHub Pages or a local HTTP server rather than file://.</div>'});}
+init();
 </script>
 </body>
 </html>
