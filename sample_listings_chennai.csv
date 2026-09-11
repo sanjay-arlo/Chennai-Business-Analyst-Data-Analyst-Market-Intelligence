@@ -1,11 +1,129 @@
 Job Title,Company,Location,Industry,Min Salary LPA,Max Salary LPA,Work Arrangement,Skills
-Business Analyst,TCS,OMR,IT Services,5.5,9.0,Hybrid,"SQL;Excel;Power BI;Agile;Jira;Stakeholder Management"
-Business Analyst,Cognizant,Guindy,IT Services,6.0,10.0,Hybrid,"SQL;Excel;Power BI;Requirements Gathering;Jira"
-Data Analyst,Accenture,Taramani,Consulting,5.0,8.5,Hybrid,"SQL;Python;Power BI;Excel"
-BI Analyst,Infosys,Perungudi,IT Services,6.5,10.5,Hybrid,"SQL;Power BI;DAX;Excel"
-Product Analyst,Zoho,Chennai,SaaS,7.0,12.0,On-site,"SQL;Python;A/B Testing;Excel"
-Senior Business Analyst,Freshworks,Sholinganallur,SaaS,11.0,18.0,Hybrid,"SQL;Excel;Stakeholder Management;Agile;Jira"
-Data Analyst,HCLTech,Siruseri,IT Services,5.5,9.0,On-site,"SQL;Excel;Power BI;Python"
-Business Analyst,Wipro,Nungambakkam,IT Services,5.0,8.0,Hybrid,"SQL;Excel;Process Mapping;Agile"
-BI Analyst,Capgemini,Guindy,Consulting,6.0,10.0,Hybrid,"Power BI;DAX;SQL;Excel"
-Product Analyst,Tiger Analytics,Taramani,Analytics,8.0,14.0,Hybrid,"SQL;Python;A/B Testing;Power BI"
+Data Analyst,Axis Bank,Nungambakkam,BFSI,5.3,8.8,Hybrid,SQL;Excel;Power BI;Python;Risk Analytics;Stakeholder Management
+Data Analyst,Deloitte,Guindy,Consulting,6.1,8.8,Hybrid,SQL;Excel;Power BI;Python;Client Management;PowerPoint
+Data Analyst,Yubi,Taramani,FinTech,5.7,8.5,Hybrid,SQL;Excel;Power BI;Python;Product Analytics
+Data Analyst,Mu Sigma,Taramani,Consulting,5.4,8.1,On-site,SQL;Excel;Power BI;Python;Client Management;PowerPoint
+Data Analyst,Myntra,Perungudi,E-commerce,5.1,8.7,Hybrid,SQL;Excel;Power BI;Python;Product Analytics;Tableau
+Data Analyst,ICICI Bank,Nungambakkam,BFSI,5.5,8.4,On-site,SQL;Excel;Power BI;Python;Risk Analytics;Stakeholder Management
+Data Analyst,Accenture,Taramani,Consulting,5.0,8.0,Hybrid,SQL;Excel;Power BI;Python
+Data Analyst,TCS,OMR,IT Services,5.4,8.9,Hybrid,SQL;Excel;Power BI;Python;Tableau
+Data Analyst,Freshworks,Sholinganallur,SaaS,5.9,9.0,Hybrid,SQL;Excel;Power BI;Python;Product Analytics
+Data Analyst,Razorpay,Perungudi,FinTech,6.0,9.1,Remote,SQL;Excel;Power BI;Python;Product Analytics;Statistics
+Data Analyst,Practo,Guindy,Healthcare,5.2,7.9,On-site,SQL;Excel;Power BI;Python;Statistics
+Data Analyst,HCLTech,Siruseri,IT Services,5.5,9.0,On-site,SQL;Excel;Power BI;Python
+Data Analyst,Zoho,Sholinganallur,SaaS,5.8,9.3,Hybrid,SQL;Excel;Power BI;Python;Product Analytics
+Data Analyst,Infosys,Perungudi,IT Services,5.2,8.7,Hybrid,SQL;Excel;Power BI;Python
+Data Analyst,Wipro,Guindy,IT Services,5.0,8.0,Remote,SQL;Excel;Power BI;Python;Tableau
+Data Analyst,TVS Motor,Guindy,Automotive,5.3,8.6,On-site,SQL;Excel;Power BI;Python;Process Mapping
+Data Analyst,Swiggy,OMR,E-commerce,5.8,9.2,Hybrid,SQL;Excel;Power BI;Python;Product Analytics
+Data Analyst,Hyundai,Ambattur,Automotive,5.1,8.0,On-site,SQL;Excel;Power BI;Python;Process Mapping
+Data Analyst,Chargebee,Taramani,SaaS,5.9,9.1,Remote,SQL;Excel;Power BI;Python;Product Analytics
+Data Analyst,HDFC Bank,Guindy,BFSI,5.6,8.5,Hybrid,SQL;Excel;Power BI;Python;Risk Analytics
+Data Analyst,Kotak Mahindra Bank,Teynampet,BFSI,5.4,8.9,Hybrid,SQL;Excel;Power BI;Python;Risk Analytics;Stakeholder Management
+Data Analyst,Tiger Analytics,Taramani,Consulting,6.2,9.4,Hybrid,SQL;Excel;Power BI;Python;Client Management;PowerPoint
+Data Analyst,Amazon,OMR,E-commerce,6.3,9.5,Remote,SQL;Excel;Power BI;Python;Product Analytics;Tableau
+Data Analyst,Cognizant,Guindy,IT Services,5.3,8.6,Hybrid,SQL;Excel;Power BI;Python
+Data Analyst,Capgemini,Perungudi,Consulting,5.6,8.8,Hybrid,SQL;Excel;Power BI;Python;Client Management
+Data Analyst,MedGenome,Taramani,Healthcare,5.2,8.2,On-site,SQL;Excel;Power BI;Python;Statistics
+Data Analyst,Reliance Retail,Ambattur,Retail,5.0,7.8,On-site,SQL;Excel;Power BI;Python;Process Mapping
+Data Analyst,Kissflow,OMR,SaaS,5.6,9.0,Hybrid,SQL;Excel;Power BI;Python;Product Analytics
+Data Analyst,Axis Bank,Nungambakkam,BFSI,5.7,9.1,Hybrid,SQL;Excel;Power BI;Python;Risk Analytics;Stakeholder Management
+Data Analyst,Zoho,Guindy,SaaS,5.9,9.4,Remote,SQL;Excel;Power BI;Python;Product Analytics
+Data Analyst,Yubi,Guindy,FinTech,5.5,8.7,Hybrid,SQL;Excel;Power BI;Python;Product Analytics
+Data Analyst,Ashok Leyland,Perungudi,Automotive,5.2,8.1,On-site,SQL;Excel;Power BI;Python;Process Mapping
+Data Analyst,Flipkart,OMR,E-commerce,6.0,9.3,Hybrid,SQL;Excel;Power BI;Python;Product Analytics;Tableau
+Data Analyst,ICICI Bank,Guindy,BFSI,5.4,8.5,On-site,SQL;Excel;Power BI;Python;Risk Analytics
+Data Analyst,TCS,OMR,IT Services,5.5,8.8,Hybrid,SQL;Excel;Power BI;Python
+Data Analyst,Freshworks,Taramani,SaaS,6.1,9.4,Hybrid,SQL;Excel;Power BI;Python;Product Analytics
+Data Analyst,Razorpay,Taramani,FinTech,6.1,9.4,Remote,SQL;Excel;Power BI;Python;Product Analytics;Statistics
+Data Analyst,Infosys,Perungudi,IT Services,5.3,8.5,Hybrid,SQL;Excel;Power BI;Python
+Business Analyst,Cognizant,Guindy,IT Services,5.8,9.5,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Jira
+Business Analyst,TCS,OMR,IT Services,5.6,9.2,Hybrid,SQL;Excel;Power BI;Agile;Jira;Stakeholder Management
+Business Analyst,Wipro,Nungambakkam,IT Services,5.2,8.3,Hybrid,SQL;Excel;Process Mapping;Agile
+Business Analyst,Infosys,Perungudi,IT Services,5.7,9.0,On-site,SQL;Excel;Power BI;Requirements Gathering;Jira
+Business Analyst,Accenture,Taramani,Consulting,6.0,9.8,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Stakeholder Management;PowerPoint
+Business Analyst,Deloitte,Guindy,Consulting,6.4,10.0,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Stakeholder Management;Agile
+Business Analyst,Mu Sigma,Taramani,Consulting,5.5,9.0,On-site,SQL;Excel;Requirements Gathering;Process Mapping;Agile
+Business Analyst,Freshworks,Sholinganallur,SaaS,6.5,10.5,Hybrid,SQL;Excel;Power BI;Stakeholder Management;Agile;Jira
+Business Analyst,Zoho,OMR,SaaS,6.1,9.8,Remote,SQL;Excel;Power BI;Requirements Gathering;Agile
+Business Analyst,Chargebee,Taramani,SaaS,6.2,10.0,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Jira
+Business Analyst,Yubi,Perungudi,FinTech,6.0,9.5,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Stakeholder Management;Process Mapping
+Business Analyst,Razorpay,Guindy,FinTech,6.3,10.0,Remote,SQL;Excel;Power BI;Requirements Gathering;Agile;Jira
+Business Analyst,HDFC Bank,Guindy,BFSI,5.9,9.7,On-site,SQL;Excel;Power BI;Requirements Gathering;Stakeholder Management
+Business Analyst,ICICI Bank,Nungambakkam,BFSI,5.8,9.4,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Agile
+Business Analyst,Axis Bank,Guindy,BFSI,5.7,9.2,Hybrid,SQL;Excel;Power BI;Stakeholder Management;Process Mapping
+Business Analyst,Kotak Mahindra Bank,Teynampet,BFSI,6.0,9.8,On-site,SQL;Excel;Requirements Gathering;Stakeholder Management;Agile
+Business Analyst,TVS Motor,Guindy,Automotive,5.6,8.8,On-site,SQL;Excel;Power BI;Process Mapping;Agile
+Business Analyst,Ashok Leyland,Ambattur,Automotive,5.5,8.9,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Process Mapping
+Business Analyst,Hyundai,Guindy,Automotive,5.8,9.1,On-site,SQL;Excel;Power BI;Agile;Jira
+Business Analyst,Apollo Hospitals,Guindy,Healthcare,5.4,8.6,On-site,SQL;Excel;Power BI;Requirements Gathering;Stakeholder Management
+Business Analyst,Practo,Nungambakkam,Healthcare,5.8,9.0,Hybrid,SQL;Excel;Power BI;Agile;Jira
+Business Analyst,Reliance Retail,Ambattur,Retail,5.2,8.2,On-site,SQL;Excel;Process Mapping;Stakeholder Management
+Business Analyst,DMart,Porur,Retail,5.1,8.0,On-site,SQL;Excel;Requirements Gathering;Process Mapping
+Business Analyst,Swiggy,OMR,E-commerce,5.9,9.6,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Agile;Jira
+Business Analyst,Amazon,OMR,E-commerce,6.5,10.1,Remote,SQL;Excel;Power BI;Stakeholder Management;Agile
+Business Analyst,Flipkart,Perungudi,E-commerce,6.1,9.7,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Jira
+Business Analyst,Myntra,Perungudi,E-commerce,6.0,9.5,Hybrid,SQL;Excel;Power BI;Stakeholder Management;Agile
+Business Analyst,Tiger Analytics,Taramani,Consulting,6.2,10.2,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Client Management;PowerPoint
+Business Analyst,EY,Nungambakkam,Consulting,6.3,10.5,Remote,SQL;Excel;Power BI;Stakeholder Management;Agile;PowerPoint
+Business Analyst,Capgemini,Guindy,Consulting,6.0,9.8,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Jira
+Business Analyst,Capgemini,Perungudi,Consulting,5.8,9.4,On-site,SQL;Excel;Requirements Gathering;Process Mapping;Agile
+Business Analyst,HCLTech,Siruseri,IT Services,5.6,9.0,On-site,SQL;Excel;Power BI;Requirements Gathering;Jira
+Business Analyst,Cognizant,Guindy,IT Services,5.9,9.6,Hybrid,SQL;Excel;Power BI;Agile;Jira
+Business Analyst,TCS,OMR,IT Services,5.8,9.4,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Stakeholder Management
+Business Analyst,Wipro,Nungambakkam,IT Services,5.4,8.7,Remote,SQL;Excel;Process Mapping;Agile
+Business Analyst,Infosys,Perungudi,IT Services,5.6,9.1,On-site,SQL;Excel;Power BI;Requirements Gathering;Jira
+Business Analyst,Accenture,Taramani,Consulting,6.1,10.0,Hybrid,SQL;Excel;Power BI;Requirements Gathering;Stakeholder Management
+BI Analyst,Infosys,Perungudi,IT Services,6.6,10.4,Hybrid,SQL;Power BI;DAX;Excel;ETL
+BI Analyst,Capgemini,Guindy,Consulting,6.7,10.8,Hybrid,Power BI;DAX;SQL;Excel;ETL
+BI Analyst,TCS,OMR,IT Services,6.5,10.2,On-site,SQL;Power BI;DAX;Excel
+BI Analyst,HCLTech,Siruseri,IT Services,6.7,10.5,On-site,SQL;Power BI;DAX;Excel;ETL
+BI Analyst,Wipro,Nungambakkam,IT Services,6.4,10.0,Hybrid,SQL;Power BI;DAX;Excel
+BI Analyst,Cognizant,Guindy,IT Services,6.7,10.7,Hybrid,SQL;Power BI;DAX;Excel;ETL
+BI Analyst,Freshworks,Sholinganallur,SaaS,7.0,11.4,Hybrid,SQL;Power BI;DAX;Excel;Product Analytics
+BI Analyst,Zoho,OMR,SaaS,6.8,11.2,Remote,SQL;Power BI;DAX;Excel;ETL
+BI Analyst,Kissflow,Taramani,SaaS,6.7,11.0,Hybrid,SQL;Power BI;DAX;Excel;Product Analytics
+BI Analyst,Yubi,Guindy,FinTech,6.9,11.3,Remote,SQL;Power BI;DAX;Excel;ETL
+BI Analyst,HDFC Bank,Guindy,BFSI,6.8,11.0,On-site,SQL;Power BI;DAX;Excel;Risk Analytics
+BI Analyst,ICICI Bank,Nungambakkam,BFSI,6.7,10.9,Hybrid,SQL;Power BI;DAX;Excel;Risk Analytics
+BI Analyst,Axis Bank,Guindy,BFSI,6.6,10.6,Hybrid,SQL;Power BI;DAX;Excel;Risk Analytics
+BI Analyst,Razorpay,Taramani,FinTech,7.0,11.6,Hybrid,SQL;Power BI;DAX;Excel;Product Analytics
+BI Analyst,Tiger Analytics,Taramani,Consulting,7.2,12.0,Hybrid,SQL;Power BI;DAX;Excel;ETL;PowerPoint
+BI Analyst,Deloitte,Guindy,Consulting,7.0,11.8,Remote,SQL;Power BI;DAX;Excel;ETL;PowerPoint
+BI Analyst,Mu Sigma,Taramani,Consulting,6.7,10.9,On-site,SQL;Power BI;DAX;Excel;ETL
+BI Analyst,Accenture,Perungudi,Consulting,6.8,11.1,Hybrid,SQL;Power BI;DAX;Excel
+BI Analyst,TVS Motor,Guindy,Automotive,6.5,10.2,On-site,SQL;Power BI;DAX;Excel;Process Mapping
+Product Analyst,Zoho,Sholinganallur,SaaS,7.1,11.8,On-site,SQL;Python;Excel;A/B Testing;Product Analytics;Tableau
+Product Analyst,Freshworks,Taramani,SaaS,7.4,12.5,Hybrid,SQL;Python;Excel;A/B Testing;Product Analytics
+Product Analyst,Chargebee,OMR,SaaS,7.2,12.2,Hybrid,SQL;Python;Excel;A/B Testing;Product Analytics;Statistics
+Product Analyst,Kissflow,Taramani,SaaS,7.0,11.9,Remote,SQL;Python;Excel;A/B Testing;Product Analytics
+Product Analyst,Razorpay,Perungudi,FinTech,7.6,12.8,Hybrid,SQL;Python;Excel;A/B Testing;Product Analytics
+Product Analyst,Yubi,Guindy,FinTech,7.3,12.1,Remote,SQL;Python;Excel;A/B Testing;Product Analytics
+Product Analyst,Myntra,OMR,E-commerce,7.4,12.6,Hybrid,SQL;Python;Excel;A/B Testing;Product Analytics
+Product Analyst,Swiggy,Perungudi,E-commerce,7.6,12.9,Hybrid,SQL;Python;Excel;A/B Testing;Product Analytics
+Product Analyst,Amazon,OMR,E-commerce,7.9,13.4,Remote,SQL;Python;Excel;A/B Testing;Product Analytics;Tableau
+Product Analyst,Flipkart,Perungudi,E-commerce,7.5,12.8,Hybrid,SQL;Python;Excel;A/B Testing;Product Analytics
+Product Analyst,Tiger Analytics,Taramani,Consulting,7.4,12.2,Hybrid,SQL;Python;Excel;A/B Testing;PowerPoint
+Product Analyst,Deloitte,Guindy,Consulting,7.8,13.0,Hybrid,SQL;Python;Excel;A/B Testing;Product Analytics
+Product Analyst,Accenture,Taramani,Consulting,7.1,11.8,On-site,SQL;Python;Excel;A/B Testing
+Product Analyst,Axis Bank,Guindy,BFSI,7.0,11.2,On-site,SQL;Python;Excel;A/B Testing;Risk Analytics
+Product Analyst,HDFC Bank,Nungambakkam,BFSI,7.2,11.5,Hybrid,SQL;Python;Excel;A/B Testing;Risk Analytics
+Product Analyst,ICICI Bank,Guindy,BFSI,7.0,11.3,Hybrid,SQL;Python;Excel;A/B Testing;Risk Analytics
+Product Analyst,TVS Motor,Perungudi,Automotive,6.9,11.0,On-site,SQL;Python;Excel;A/B Testing;Process Mapping
+Product Analyst,Practo,Taramani,Healthcare,7.0,11.4,Hybrid,SQL;Python;Excel;A/B Testing;Product Analytics
+Product Analyst,Apollo Hospitals,Guindy,Healthcare,6.8,10.9,On-site,SQL;Python;Excel;A/B Testing
+Senior Business Analyst,Freshworks,Sholinganallur,SaaS,11.2,17.5,Hybrid,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira;Process Mapping
+Senior Business Analyst,Zoho,OMR,SaaS,10.8,16.8,Hybrid,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira
+Senior Business Analyst,Razorpay,Taramani,FinTech,11.0,17.2,Remote,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira;Process Mapping
+Senior Business Analyst,Yubi,Guindy,FinTech,10.6,16.5,Hybrid,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira
+Senior Business Analyst,Amazon,OMR,E-commerce,11.5,18.0,Remote,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira;Process Mapping
+Senior Business Analyst,Flipkart,Perungudi,E-commerce,10.9,17.1,Hybrid,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira
+Senior Business Analyst,Tiger Analytics,Taramani,Consulting,11.4,18.2,Hybrid,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira;Process Mapping
+Senior Business Analyst,Deloitte,Guindy,Consulting,11.8,18.5,Hybrid,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira;PowerPoint
+Senior Business Analyst,TCS,OMR,IT Services,10.4,16.0,On-site,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira
+Senior Business Analyst,Cognizant,Guindy,IT Services,10.2,15.7,Hybrid,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira
+Senior Business Analyst,Infosys,Perungudi,IT Services,10.0,15.5,On-site,SQL;Excel;Stakeholder Management;Requirements Gathering;Process Mapping
+Senior Business Analyst,Accenture,Taramani,Consulting,10.7,16.4,Hybrid,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira
+Senior Business Analyst,HDFC Bank,Guindy,BFSI,10.3,15.9,Hybrid,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile
+Senior Business Analyst,ICICI Bank,Nungambakkam,BFSI,10.1,15.6,On-site,SQL;Excel;Stakeholder Management;Requirements Gathering;Agile;Jira
+""
