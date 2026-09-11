@@ -1,0 +1,35 @@
+name: Validate dashboard
+
+on:
+  push:
+    paths:
+      - 'index.html'
+      - 'app.js'
+      - '.github/workflows/validate_dashboard.yml'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'app.js'
+      - '.github/workflows/validate_dashboard.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate JavaScript syntax
+        run: node --check app.js
+      - name: Validate HTML references
+        run: python - <<'PY'
+from pathlib import Path
+html = Path('index.html').read_text(encoding='utf-8')
+assert 'app.js' in html, 'index.html does not reference app.js'
+assert 'sample_listings_chennai.csv' not in html.replace('Data transparency',''), 'Unexpected inline CSV dependency in HTML'
+print('PASS: dashboard references external app.js')
+PY
