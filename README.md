@@ -4,7 +4,7 @@
 
 ## 🔴 Live Dashboard
 
-### 🚀 [Open the Live Interactive Dashboard](https://sanjay-arlo.github.io/chennai-ba-da-market-intelligence/)
+### 🚀 [Open the Live Interactive Dashboard](https://sanjay-arlo.github.io/Chennai-Business-Analyst-Data-Analyst-Market-Intelligence/)
 
 The dashboard is published with **GitHub Pages**. It reads `sample_listings_chennai.csv` directly in the browser and calculates the displayed KPIs and charts from that dataset.
 
@@ -158,7 +158,7 @@ Run it in **Jupyter Notebook** or **Google Colab**.
 ## 📂 Repository Structure
 
 ```text
-chennai-ba-da-market-intelligence/
+Chennai-Business-Analyst-Data-Analyst-Market-Intelligence/
 ├── index.html
 ├── sample_listings_chennai.csv
 ├── analysis_chennai.ipynb
