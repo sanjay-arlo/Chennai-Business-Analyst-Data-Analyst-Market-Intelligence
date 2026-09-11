@@ -80,7 +80,7 @@ The dashboard reports the **median** of these listing-level midpoints.
 
 ## Data quality
 
-The validation script checks required columns, blank required fields, salary validity, duplicate rows and the expected 120-record sample size. fileciteturn230file0
+The validation script checks required columns, blank required fields, salary validity, duplicate rows and the expected 120-record sample size.
 
 ## Limitation
 
