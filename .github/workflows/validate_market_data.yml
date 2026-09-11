@@ -1,0 +1,29 @@
+name: Validate market dataset
+
+on:
+  push:
+    paths:
+      - 'sample_listings_chennai.csv'
+      - 'scripts/validate_market_data.py'
+      - '.github/workflows/validate_market_data.yml'
+  pull_request:
+    paths:
+      - 'sample_listings_chennai.csv'
+      - 'scripts/validate_market_data.py'
+      - '.github/workflows/validate_market_data.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install pandas
+      - name: Validate dataset
+        run: python scripts/validate_market_data.py
