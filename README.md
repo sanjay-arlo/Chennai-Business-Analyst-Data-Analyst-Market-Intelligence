@@ -1,73 +1,157 @@
 # Chennai Business Analyst & Data Analyst Market Intelligence Dashboard
 
-> A portfolio-grade Business Analyst case study analysing Chennai hiring patterns, skills, salary bands, hiring hubs, industries, and work arrangements.
+> A portfolio-grade case study demonstrating how a Business Analyst / Data Analyst can turn structured job-listing-style data into KPIs, comparisons, segmentation, and decision-oriented recommendations.
 
 ## 🔴 Live Dashboard
 
 ### 🚀 [Open the Live Interactive Dashboard](https://sanjay-arlo.github.io/chennai-ba-da-market-intelligence/)
 
-The dashboard is published with **GitHub Pages** and can be opened directly in a browser.
+The dashboard is published with **GitHub Pages**. It reads `sample_listings_chennai.csv` directly in the browser and calculates the displayed KPIs and charts from that dataset.
 
 ---
 
-## 📌 Project Overview
+## ⚠️ Data Transparency
 
-This project explores the Chennai market for **Business Analyst, Data Analyst, BI Analyst, Product Analyst, and Senior Business Analyst** roles.
+The repository contains **120 synthetic / illustrative job-listing records** created for portfolio demonstration.
 
-The objective is to demonstrate how a Business Analyst can turn structured job-listing-style data into business questions, KPIs, analysis, visual storytelling, and recommendations.
+This dataset is **not live scraped data**, not a survey of the Chennai labour market, and not evidence of actual current hiring volumes or salaries. Any insight from the dashboard should therefore be described as an **illustrative signal from the sample**.
 
-> **Data transparency:** The included 120-row dataset is **synthetic/illustrative** and was created for portfolio demonstration. It must not be presented as live scraped job-market data.
-
----
-
-## 🎯 Business Questions
-
-1. Which skills are most frequently requested?
-2. How do illustrative salary levels differ across analytics roles?
-3. Which Chennai hiring hubs appear most often in the sample?
-4. Which work arrangement is most common?
-5. Which industries contribute the most sampled opportunities?
-6. How does the skill profile differ between Business Analyst and Data Analyst roles?
-7. Which capabilities should an analyst prioritise based on the sample?
+That distinction is intentional: the project demonstrates the analytical process without pretending that fabricated data is real market research.
 
 ---
 
-## 📊 Dashboard Highlights
+## 🎯 Business Objective
 
-| View | Purpose |
+The project answers practical questions a hiring-market or workforce analyst might investigate:
+
+1. Which analyst roles appear most often in the sample?
+2. What salary midpoint is typical for each role?
+3. Which skills appear in the largest share of listings?
+4. Which Chennai hiring hubs are most represented?
+5. Which industries contribute the most sampled roles?
+6. What work arrangement dominates the sample?
+7. How does the skill mix differ between Business Analyst and Data Analyst roles?
+
+### Decision framework
+
+**Data → Validation → Feature Engineering → KPI → Segmentation → Insight → Recommendation**
+
+---
+
+## 📊 Dashboard Features
+
+| View | What it does |
 |---|---|
-| **Executive KPIs** | Summarise sampled listings, salary, role mix and leading skill |
-| **Salary by Role** | Compare illustrative salary levels across roles |
-| **Skill Demand** | Identify frequently requested technical and business skills |
-| **Chennai Hiring Hubs** | Compare sampled opportunities across Chennai localities |
-| **Work Arrangement** | Analyse on-site, hybrid and remote mix |
-| **Industry Mix** | Compare sampled opportunities by sector |
-| **BA vs DA Skill Profile** | Contrast business and data-analysis requirements |
-| **Salary Distribution** | Understand the spread of illustrative LPA values |
-| **Recommendations** | Convert analysis into practical actions |
+| **Executive KPIs** | Shows filtered listing count, median salary midpoint, top role and top skill |
+| **Salary by Role** | Calculates median salary midpoint for each role |
+| **Skill Demand** | Counts listings mentioning each skill and converts them to listing penetration % |
+| **Hiring Hubs** | Shows the distribution of sampled listings by Chennai location |
+| **Work Arrangement** | Compares hybrid, on-site and remote listings |
+| **Industry Mix** | Shows sampled listing counts by industry |
+| **Role Mix** | Compares the volume of each analyst role |
+| **BA vs DA Skill Profile** | Calculates the percentage of each role's listings mentioning each skill |
+| **Interactive Filters** | Recalculates all dashboard views by role, industry, work arrangement and location |
 
 ---
 
-## 🧠 Business Analysis Approach
+## 🧮 KPI Definitions
 
-The project follows a simple decision-oriented flow:
+To avoid ambiguous numbers, the dashboard uses explicit formulas.
 
-**Data → Insight → Business implication → Recommendation**
+### Salary midpoint
 
-Rather than presenting charts alone, the dashboard connects each analytical view to a practical decision such as comparing roles, identifying skill gaps, understanding hiring hubs, and prioritising capabilities.
+For each listing:
 
-Because the dataset is synthetic, all findings are **illustrative portfolio analysis**, not claims about the current Chennai job market.
+`Salary Midpoint = (Min Salary LPA + Max Salary LPA) / 2`
+
+The executive salary KPI is the **median** of those listing-level midpoints.
+
+### Skill demand
+
+`Skill Demand % = Listings mentioning skill / Filtered listings × 100`
+
+A listing contributes a maximum of one count per skill.
+
+### BA vs DA profile
+
+For each skill and role:
+
+`Skill Demand % = Role listings mentioning skill / Total listings for that role × 100`
+
+This makes the comparison transparent and reproducible.
+
+---
+
+## 🗂️ Dataset
+
+`sample_listings_chennai.csv` contains these fields:
+
+| Column | Description |
+|---|---|
+| `Job Title` | Analyst role |
+| `Company` | Example employer |
+| `Location` | Chennai hiring hub |
+| `Industry` | Industry classification |
+| `Min Salary LPA` | Illustrative minimum annual package |
+| `Max Salary LPA` | Illustrative maximum annual package |
+| `Work Arrangement` | Hybrid, On-site or Remote |
+| `Skills` | Semicolon-separated skills mentioned in the listing |
+
+---
+
+## 🧪 Data & Analysis Workflow
+
+### 1. Load
+Read the CSV with Pandas.
+
+### 2. Validate
+Check row count, missing values, duplicates, unique companies and locations.
+
+### 3. Feature engineer
+Create salary midpoint and salary spread.
+
+### 4. Analyse
+Calculate role mix, salary statistics, skill penetration, hub distribution, work arrangement and industry mix.
+
+### 5. Compare
+Build a BA vs DA skill-demand view using role-level denominators.
+
+### 6. Visualise
+Render the calculated metrics in the browser with Plotly.
+
+### 7. Interpret
+Translate observed sample patterns into practical portfolio recommendations while clearly labelling them as illustrative.
+
+---
+
+## 📓 Analysis Notebook
+
+`analysis_chennai.ipynb` mirrors the dashboard logic in Python.
+
+It includes:
+
+- Data loading
+- Data-quality checks
+- KPI calculation
+- Salary analysis
+- Skill-demand analysis
+- Location / work-arrangement / industry analysis
+- BA vs DA skill comparison
+- Decision-oriented interpretation guidance
+
+Run it in **Jupyter Notebook** or **Google Colab**.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Python** — data preparation and analysis
-- **Pandas** — cleaning and transformation
-- **Jupyter Notebook** — analysis workflow
-- **Plotly.js** — interactive visualisation
-- **HTML / JavaScript** — dashboard interface
-- **GitHub Pages** — live deployment
+- **Python**
+- **Pandas**
+- **Jupyter Notebook**
+- **HTML / CSS / JavaScript**
+- **Plotly.js**
+- **Papa Parse**
+- **GitHub Pages**
 
 ---
 
@@ -75,83 +159,73 @@ Because the dataset is synthetic, all findings are **illustrative portfolio anal
 
 ```text
 chennai-ba-da-market-intelligence/
-├── index.html                  # Live interactive dashboard
-├── sample_listings_chennai.csv # 120-row synthetic/illustrative dataset
-├── analysis_chennai.ipynb      # Analysis notebook
-├── requirements_chennai.txt    # Python dependencies
-└── README.md                   # Project documentation
+├── index.html
+├── sample_listings_chennai.csv
+├── analysis_chennai.ipynb
+├── requirements_chennai.txt
+├── README.md
+└── .nojekyll
 ```
 
 ---
 
-## 🔄 Analysis Workflow
+## 🌐 How the Dashboard Works
 
-```text
-Job Listing Style Data
-        ↓
-Data Inspection & Cleaning
-        ↓
-Feature Engineering
-        ↓
-Business Analysis
-        ↓
-Interactive Visualisation
-        ↓
-Business Recommendations
+The browser loads the repository CSV:
+
+`sample_listings_chennai.csv`
+
+Then JavaScript:
+
+1. Parses the records
+2. Applies active filters
+3. Calculates KPIs
+4. Aggregates the data
+5. Renders Plotly charts
+
+There are **no manually typed KPI values or chart datasets** in the dashboard.
+
+This makes the CSV the single source of truth for the visual layer.
+
+---
+
+## ▶️ Run Locally
+
+Because the browser loads the CSV using a web request, use a small local HTTP server instead of opening `index.html` directly with `file://`.
+
+Example:
+
+```bash
+python -m http.server 8000
 ```
 
-### 1. Data Preparation
-Load and inspect the Chennai job-listing-style dataset.
+Then open:
 
-### 2. Data Cleaning
-Standardise fields and prepare salary, role, location, work arrangement and industry dimensions.
-
-### 3. Feature Engineering
-Create role groups, salary measures, skill categories and locality groupings.
-
-### 4. Business Analysis
-Evaluate skill demand, salary patterns, hiring hubs, industry mix, work arrangement and BA/DA skill differences.
-
-### 5. Visualisation
-Present the analysis through an interactive browser dashboard.
-
-### 6. Recommendations
-Translate analytical observations into practical, decision-oriented recommendations.
-
----
-
-## 🌐 Project Links
-
-**Live Dashboard:**  
-https://sanjay-arlo.github.io/chennai-ba-da-market-intelligence/
-
-**GitHub Repository:**  
-https://github.com/sanjay-arlo/chennai-ba-da-market-intelligence
-
----
-
-## 🚀 How to Use
-
-### View the Dashboard
-Open the Live Dashboard link above. No Python installation is required.
-
-### Run the Analysis
-Open `analysis_chennai.ipynb` in Jupyter or Google Colab and use `sample_listings_chennai.csv` as the input dataset.
-
-### Run the Dashboard Locally
-Open `index.html` in a modern browser. Plotly.js is loaded from a CDN, so an internet connection is required.
+`http://localhost:8000`
 
 ---
 
 ## 🔮 Future Improvements
 
-A future version could use a legally collected real-world dataset and add collection methodology, stronger data-quality checks, SQL analysis, Power BI reporting, automated refreshes, filters, and time-series hiring analysis.
+A production-style version could add:
+
+- A legally collected real-world job dataset
+- Collection date and source URL
+- SQL data model and queries
+- Power BI version
+- Automated data refresh
+- Salary normalisation by experience
+- Experience-level segmentation
+- Company-level comparison
+- Time-series hiring trends
+- Data-quality tests and CI checks
 
 ---
 
 ## 👤 Author
 
-**Sanjay Arlo**  
+**Sanjay Arlo**
+
 Business Analyst / Data Analyst Portfolio
 
 GitHub: https://github.com/sanjay-arlo
